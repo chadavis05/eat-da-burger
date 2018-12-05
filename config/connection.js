@@ -4,7 +4,6 @@ var mysql = require('mysql');
 // Create the MySQL connection object
 var connection;
 
-	// DB is local on localhost
 	connection = mysql.createConnection({
 		port: 3306,
 		host: 'localhost',

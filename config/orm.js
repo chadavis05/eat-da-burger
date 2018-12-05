@@ -1,7 +1,5 @@
-// Import the MySQL connection object
 var connection = require ('./connection.js');
 
-// Helper function for generating MySQL syntax
 function printQuestionMarks(num) {
 	var arr = [];
 
@@ -36,12 +34,11 @@ var orm = {
 				throw err;
 			}
 
-			// Return results in callback
 			cb(result);
 		});
 	},
 
-	// Function that insert a single table entry
+	// Function that inserts a single table entry
 	insertOne: function(table, cols, vals, cb) {
 		// Construct the query string that inserts a single row into the target table
 		var queryString = "INSERT INTO " + table;
@@ -53,15 +50,12 @@ var orm = {
 		queryString += printQuestionMarks(vals.length);
 		queryString += ") ";
 
-		// console.log(queryString);
-
 		// Perform the database query
 		connection.query(queryString, vals, function(err, result) {
 			if (err) {
 				throw err;
 			}
 
-			// Return results in callback
 			cb(result);
 		});
 	},
@@ -76,15 +70,12 @@ var orm = {
 		queryString += " WHERE ";
 		queryString += condition;
 
-		// console.log(queryString);
 
-		// Perform the database query
 		connection.query(queryString, function(err, result) {
 			if (err) {
 				throw err;
 			}
 
-			// Return results in callback
 			cb(result);
 		});
 	}
